@@ -1,0 +1,9 @@
+.pagination_btn {
+  border: 1px double rgb(97, 223, 124);
+  border-radius: 8px;
+  color: rgb(97, 223, 124);
+}
+.pagination_btn:disabled {
+    opacity: 0.5;
+    border: 1px double rgb(102, 109, 103);
+}

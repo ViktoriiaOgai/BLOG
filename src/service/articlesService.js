@@ -1,0 +1,18 @@
+import axios from "axios";
+
+const API_URL = "https://realworld.habsida.net/api";
+
+export const getArticles = async (page = 1, limit = 4) => {
+    const offset = (page - 1) * limit;
+    const response = await axios.get(
+        `${API_URL}/articles?limit=${limit}&offset=${offset}`
+    );
+    return response.data;
+};
+
+export const getArticleBySlug = async (slug) => {
+    const response = await axios.get(
+        `${API_URL}/articles/${slug}`
+    );
+    return response.data.article;
+};
