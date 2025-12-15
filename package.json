@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -r https://github.com/ViktoriiaOgai/BLOG.git"
   },
   "dependencies": {
     "axios": "^1.13.2",
