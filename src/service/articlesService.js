@@ -16,3 +16,17 @@ export const getArticleBySlug = async (slug) => {
     );
     return response.data.article;
 };
+
+export const singUp = async (username, email, password) => {
+  const response = await axios.post(`${API_URL}/users`, {
+    user: { username, email, password },
+  });
+  return response.data.user;
+};
+
+export const singIn = async (email, password) => {
+  const response = await axios.post(`${API_URL}/users/login`, {
+    user: { email, password },
+  });
+  return response.data.user;
+};
