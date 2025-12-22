@@ -30,3 +30,34 @@ export const singIn = async (email, password) => {
   });
   return response.data.user;
 };
+
+export const updateArticle = async (slug, articleData) => {
+  const response = await axios.put(
+    `${API_URL}/articles/${slug}`,
+    {
+      article: articleData
+    },
+    {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
+    }
+  );
+
+  return response.data.article;
+};
+export const updateUser = async (userData) => {
+  const response = await axios.put(
+    `${API_URL}/user`,
+    {
+      user: userData,
+    },
+    {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
+    }
+  );
+
+  return response.data.user;
+};

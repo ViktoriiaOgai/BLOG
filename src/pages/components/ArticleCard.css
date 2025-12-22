@@ -1,28 +1,77 @@
-.card {
-  position: relative; 
-  max-width: 600px; 
-  background-color: rgb(247, 248, 247);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px auto;
-   padding: 40px 20px 20px; /* место сверху под кнопку */
-  border: 1px double rgb(82, 81, 81);
-  border-radius: 8px;
+.article-card {
+  border: 1px solid #e5e5e5;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  background: #fff;
 }
 
-.like {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border: 1px double rgb(97, 223, 124);
-  background: rgb(247, 248, 247);
-  border-radius: 6px;
-  color: rgb(97, 223, 124);
+/* верхняя строка */
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
- 
-.like:disabled {
+
+/* автор */
+.author {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.author img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.name {
+  color: #5cb85c;
+  font-weight: 500;
+}
+
+.date {
+  font-size: 12px;
+  color: #bbb;
+}
+
+/* лайк */
+.like-btn {
+  border: 1px solid #5cb85c;
+  background: transparent;
+  color: #5cb85c;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: default;
+}
+
+.like-btn:disabled {
   opacity: 0.5;
   color: rgb(97, 223, 124);
   border-color: rgb(97, 223, 124);
+}
+
+/* тело */
+.preview-link {
+  display: block;
+  margin-top: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.preview-link h2 {
+  margin: 0 0 8px;
+}
+
+.preview-link p {
+  color: #999;
+}
+
+ .tag-list li {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: #aaa;
 }

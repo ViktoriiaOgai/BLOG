@@ -1,26 +1,58 @@
-.header {
- width: 100%;
-  height: 100px;
-  background-color: rgb(97, 223, 124);
-  display: flex;
+.top-nav {
+display: flex;
+justify-content: space-between;
+align-items: center;       /* Выравниваем по центру по вертикали */
+padding: 15px 30px;  
+width: 1280;
+height: 60;
+gap: 10px;
+opacity: 1;
+border-bottom-width: 1px;
+padding: 10px;
+
+}
+
+.p1 {
+font-weight: 700;
+font-style: Bold;
+font-size: 24px;
+background: rgba(255, 255, 255, 1);
+letter-spacing: 0%;
+text-align: center;
+vertical-align: middle;
+width: 222;
+height: 34;
+padding-right: 64px;
+gap: 10px;
+color:  rgba(97, 187, 97, 1);
+opacity: 1;
+}
+
+.links {
+  display: flex;             /* Чтобы ссылки тоже встали в ряд */
+  gap: 20px;
+}
+
+.ulogo {
+width: 24px;
+height: 24px;
+min-width: 24px;
+min-height: 24px;
+gap: 10px;
+opacity: 1;
+border-radius: 64px;
+border-width: 1px;
+
+}
+ .userlogo {
+ display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
+ }
+.logout_btn {
+  border: 1px double rgba(97, 187, 97, 1);
+  background: rgb(247, 248, 247);
+  border-radius: 6px;
+  color:rgba(97, 187, 97, 1);
 }
  
-.header:h1 {
-  margin: 0;
-}
-
-.header .user-info {
-  
-  display: flex;
-  position: absolute;
-  top: 100px;
-  right: 50px;
-  gap: 30px; /* расстояние между именем и кнопкой */
-}
-
-.header .user-info span {
-  font-weight: bold;
-
-}

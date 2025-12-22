@@ -1,0 +1,14 @@
+.article-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.article-actions button {
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px double rgb(97, 223, 124);
+  background: rgb(247, 248, 247);
+  border-radius: 3px;
+ margin: 0 auto;
+}

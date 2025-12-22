@@ -1,18 +1,16 @@
 import "./Pagination.css";
-export default function Pagination ({page, setPage}) {
-    return (
-        <div className = "pagination">
-            <button className="pagination_btn"
-            disabled={page===1}
-            onClick = {()=> setPage(page-1)}>
-                Назад
-            </button>
-            
-             <span style={{ minWidth: "100px", textAlign: "center" }}>Страница {page}</span>
-
-            <button className="pagination_btn" onClick ={()=> setPage(page+1)}>
-                Вперед
-            </button>
-        </div>
-    );
+export default function Pagination({ currentPage, totalPages, onPageChange }) {
+  return (
+    <div className="pagination">
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+        <button
+          key={page}
+          className={`page-btn ${page === currentPage ? "active" : ""}`}
+          onClick={() => onPageChange(page)}
+        >
+          {page}
+        </button>
+      ))}
+    </div>
+  );
 }

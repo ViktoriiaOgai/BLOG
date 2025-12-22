@@ -1,15 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext.jsx";
+import { updateUser } from "../service/articlesService";
 import "./Sing.css";
 
-export default function Profile() {
+export default function SettingPage() {
   const { user, login, logout } = useAuth();
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
     setError,
   } = useForm({
@@ -20,23 +20,41 @@ export default function Profile() {
       avatar: user?.avatar || "",
     },
   });
-
-  const onSubmit = (data) => {
-    // имитация запроса на сервер
-    // здесь можно вызвать API updateUser
-    console.log("Обновленные данные:", data);
-
-    // пример: если сервер вернул ошибку
-    // setError("email", { type: "server", message: "Email уже занят" });
-
-    // если всё успешно, обновляем контекст
-    login({ ...user, ...data });
-    alert("Профиль обновлён!");
+const handleLogout = () => {
+    logout();          // сброс user
+    navigate("/");     // перенаправление на главную
   };
+  const onSubmit = async (data) => {
+  try {
+    const updatedUser = await updateUser({
+      username: data.username,
+      email: data.email,
+      password: data.password || undefined,
+      image: data.avatar,
+    });
+
+    login(updatedUser); // обновляем AuthContext
+    alert("Профиль обновлён!");
+  } catch (error) {
+    console.error(error);
+
+    if (error.response?.data?.errors) {
+      Object.entries(error.response.data.errors).forEach(
+        ([field, messages]) => {
+          setError(field, {
+            type: "server",
+            message: messages.join(", "),
+          });
+        }
+      );
+    }
+  }
+};
 
   return (
+    
     <div className="prof_change">
-      <h2>Редактирование профиля</h2>
+          <h2>Your Settings</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <label >Enter user name</label>
@@ -102,8 +120,11 @@ export default function Profile() {
           {errors.avatar && <p className="error">{errors.avatar.message}</p>}
         </div>
 
-        <button className = "save_btn" type="submit">Save</button>
+        <button className = "save_btn" type="submit">Update Settings</button>
+        <button className="logout_btn" onClick={handleLogout}>LogOut</button>
       </form>
+      
     </div>
+    
   );
 }

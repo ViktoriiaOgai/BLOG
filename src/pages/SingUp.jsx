@@ -1,18 +1,19 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { singUp } from "../service/articlesService";
+import { useAuth } from "../context/AuthContext.jsx";
+
 import "./Sing.css";
 export default function SingUp() {
   const navigate = useNavigate();
   const {
   register,
   handleSubmit,
-  watch,
   setError,
   formState: { errors },
 } = useForm({ mode: "onBlur" });
 
-
+const { login } = useAuth();
   const onSubmit = async (data) => {
   try {
     const user = await singUp(
@@ -23,8 +24,7 @@ export default function SingUp() {
 
     console.log("Пользователь зарегистрирован:", user);
 
-    // сохраняем пользователя (токен)
-    localStorage.setItem("user", JSON.stringify(user));
+   login(user); 
     navigate("/");
 
   } catch (error) {
