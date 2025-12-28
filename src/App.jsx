@@ -8,8 +8,11 @@ import SignIn from './pages/SignIn.jsx';
 import ProfilePage from "./pages/ProfilePage.jsx";
 import EditArticlePage from  "./pages/EditArticlePage";
 import SettingPage from "./pages/SettingPage.jsx";
+import NewArticlePage from './pages/NewArticlePage.jsx';
+import { useAuth } from "./context/AuthContext";
 
 function App() {
+    const { user } = useAuth();
    return (
      
         <Routes>
@@ -23,8 +26,11 @@ function App() {
               <Route path="profile/:username" element={<ProfilePage />} />
               <Route path="settings" element={<SettingPage />} />
               <Route path="/articles/:slug/edit" element={<EditArticlePage />} />
-          </Route>
-        </Routes>
+              <Route path="/new-article"element={user ? <NewArticlePage /> : <Navigate to="/sign-in" replace />
+        }/>
+        </Route>
+    </Routes>
+        
    ); 
 }
 

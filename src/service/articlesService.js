@@ -102,3 +102,23 @@ export const getArticles = async (page = 1, limit = 4) => {
 
   return response.data;
 };
+export const createArticle = async (data, token) => {
+  const response = await axios.post(
+    "https://realworld.habsida.net/api/articles",
+    {
+      article: {
+        title: data.title,
+        description: data.description,
+        body: data.body,
+      },
+    },
+    {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  return response.data.article;
+};

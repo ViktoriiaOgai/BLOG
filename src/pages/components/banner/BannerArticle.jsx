@@ -1,7 +1,11 @@
 import "./Banner.css";
+import defaultAvatar from "../../../assets/avatar.png";
 
 export default function BannerArticle({ title, author, createdAt }) {
-  
+  const avatar =
+  author?.image?.trim()
+    ? article.author.image
+    : defaultAvatar;
 const formatDate = (date) => {
   const d = new Date(date);
 
@@ -18,9 +22,10 @@ const formatDate = (date) => {
 
         <div className="banner__meta">
           <img
-            className="banner__avatar"
-            src={author?.image || "/default-avatar.png"}
-           />
+            src={avatar}
+            alt={author?.username || "author"}
+            className="author-avatar"
+          />
 
           <div className="banner__author">
             <span className="banner__username">{author?.username}</span>

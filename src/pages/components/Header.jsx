@@ -37,9 +37,9 @@ return (
               </Link>
               <Link className="userlogo" to="/settings">
               <img className= "ulogo" src={settings}/>Settings</Link>
-              <Link className="userlogo" to={`/profile/${user.username}`}>
-                 <img className= "ulogo" src={ulogo}/>{user.username}
-                 </Link>
+              <Link className="userlogo" to="/profile">
+              <img className="ulogo" src={ulogo}/>{user.username}
+              </Link>
               <button className="logout_btn" onClick={handleLogout}>LogOut</button>
               </div>
             </>

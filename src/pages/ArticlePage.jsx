@@ -8,14 +8,25 @@ import "../pages/components/banner/Banner.css";
 import BannerArticle from "./components/banner/BannerArticle.jsx";
 import { useAuth } from "../../src/context/AuthContext.jsx";
 export const API_URL = "https://realworld.habsida.net/api";
+import axios from "axios";
+import defaultAvatar from "../../src/assets/avatar.png";
+
+
 
 export default function ArticlePage() {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const { slug } = useParams();
    const navigate = useNavigate();
   const [article, setArticle] = useState({tagList: [],});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { user } = useAuth();
+  const avatar =
+  article.author?.image?.trim()
+    ? article.author.image
+    : defaultAvatar;
+
   const formatDate = (date) => {
   const d = new Date(date);
 
@@ -27,44 +38,19 @@ export default function ArticlePage() {
 };
   
 const handleEdit = () => {
-  if (!user) {
-    alert("You need to be logged in to edit this article");
-    navigate("/sign-in"); 
-    return;
-  }
-
-  if (user.username !== article.author.username) {
-    alert("You can only edit your own articles");
-    return;
-  }
-
-  navigate(`/articles/${slug}/edit`);
+     navigate(`/articles/${slug}/edit`);
 };
 
  const handleDelete = async () => {
-    if (!user) {
-      navigate("/signin");
-      return;
-    }
-
-    if (user.username.toLowerCase() !== article.author.username.toLowerCase()) {
-      alert("You can only delete your own articles");
-      return;
-    }
-
-    const confirmed = window.confirm("Do you really want to delete this article?");
-    if (!confirmed) return;
-
-    try {
-      await axios.delete(`${API_URL}/articles/${slug}`, {
-        headers: { Authorization: `Token ${user.token}` },
-      });
-      alert("Article deleted successfully");
-      navigate("/"); 
-    } catch {
-      alert("Failed to delete article");
-    }
-  };
+  try {
+    await axios.delete(`${API_URL}/articles/${slug}`, {
+      headers: { Authorization: `Token ${user.token}` },
+    });
+    navigate("/");
+  } catch {
+    alert("Failed to delete article");
+  }
+};
   useEffect(() => {
     setLoading(true);
 
@@ -82,7 +68,6 @@ const handleEdit = () => {
   if (loading) return <Loader />;
   if (error) return <p>{error}</p>;
   if (!article) return null;
-
   return (
     <>
       {/* 🔹 Баннер статьи */}
@@ -102,11 +87,12 @@ const handleEdit = () => {
       </ul>
       <div className="article-meta">
     <div className="author-info">
-      <img 
-        src={article.author.image} 
-        alt={article.author.username} 
-        className="author-avatar"
-      />
+      <img
+  src={avatar}
+  alt={article.author?.username || "author"}
+  className="author-avatar"
+/>
+
       <div>
         <p className="author-name">{article.author.username}</p>
         <p className="author-date">{formatDate(article.createdAt)}</p>
@@ -115,15 +101,34 @@ const handleEdit = () => {
     <button className="favorite-btn" onClick={() => console.log("Добавляем в избранное")}>
       Favorite Article
     </button>
-    <div className="article-actions">
-          <button onClick={handleEdit}>Edit</button>
-  <button onClick={handleDelete}>Delete</button>
-        </div>
+   {user?.username === article.author.username && (
+  <div className="article-actions">
+    <button onClick={handleEdit}>Edit</button>
+    <button onClick={() => setShowDeleteModal(true)}>Delete</button>
 
   </div>
-              
-        
+)}
+  </div>
+          
       </div>
+      {showDeleteModal && (
+  <div className="modal-overlay">
+    <div className="modal">
+      <p>Do you really want to delete this article?</p>
+      <div className="modal-actions">
+        <button onClick={() => setShowDeleteModal(false)}>
+          Cancel
+        </button>
+        <button
+          className="danger"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </>
   );
 }

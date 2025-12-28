@@ -39,6 +39,7 @@
     padding: 0;
     margin: 0;
     width: 100%;
+    
 }
 
 .tag {
@@ -51,3 +52,4 @@
     color: var(--grey, rgba(170, 170, 170, 1));
     background: #fff;
 }
+
