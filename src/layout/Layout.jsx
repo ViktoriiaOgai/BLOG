@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import "./layout.css";
 import Header from "../pages/components/Header";
 
+
 export default function Layout() {
      const { user, logout } = useAuth();
       const navigate = useNavigate();

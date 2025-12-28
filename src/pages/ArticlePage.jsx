@@ -68,6 +68,7 @@ const handleEdit = () => {
   if (loading) return <Loader />;
   if (error) return <p>{error}</p>;
   if (!article) return null;
+
   return (
     <>
       {/* 🔹 Баннер статьи */}

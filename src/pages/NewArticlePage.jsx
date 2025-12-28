@@ -13,7 +13,11 @@ export default function NewArticlePage() {
     const article = await createArticle(data, user.token);
     navigate(`/articles/${article.slug}`);
   };
-
+ if (!user) {
+    // Можно показать сообщение или редирект здесь
+    navigate("/sign-in"); 
+    return null;
+  }
   return (
     <>
       <div className="article-editor">

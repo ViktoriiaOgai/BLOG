@@ -122,3 +122,8 @@ export const createArticle = async (data, token) => {
 
   return response.data.article;
 };
+export const getArticlesByAuthor = async (username) => {
+  const response = await fetch(`${API_URL}/articles?author=${username}`);
+  const data = await response.json();
+  return data; // { articles: [...] }
+};

@@ -4,7 +4,7 @@ import defaultAvatar from "../../../assets/avatar.png";
 export default function BannerArticle({ title, author, createdAt }) {
   const avatar =
   author?.image?.trim()
-    ? article.author.image
+    ? author.image
     : defaultAvatar;
 const formatDate = (date) => {
   const d = new Date(date);
