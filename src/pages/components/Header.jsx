@@ -20,13 +20,18 @@ return (
           <div className="links">
             {!user && (
             <>
-              <Link to="/">Home</Link>
-          <Link to="/sing-up">Sing Up</Link>
-          <Link to="/sing-in">Sing In</Link>
+              <nav>
+  <div className="nav-links">
+    <Link to="/">Home</Link>
+    <Link to="/sign-up"><img className="ulogo" src={settings} alt="Sign Up"/>Sign Up</Link>
+    <Link to="/sign-in"><img className="ulogo" src={ulogo} alt="Sign In"/>Sign In</Link>
+  </div>
+</nav>
             </>
           )}
             {user && (
             <>
+            <div className="nav-links">
               <Link to="/">Home</Link>
               <Link className="userlogo" to="/new-article"><img className= "ulogo" src={newlogo}/>New Post
               </Link>
@@ -36,6 +41,7 @@ return (
                  <img className= "ulogo" src={ulogo}/>{user.username}
                  </Link>
               <button className="logout_btn" onClick={handleLogout}>LogOut</button>
+              </div>
             </>
           )}
           </div>

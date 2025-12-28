@@ -1,30 +1,40 @@
 import axios from "axios";
-
-const API_URL = "https://realworld.habsida.net/api";
-
-export const getArticles = async (page = 1, limit = 4) => {
-    const offset = (page - 1) * limit;
-    const response = await axios.get(
-        `${API_URL}/articles?limit=${limit}&offset=${offset}`
-    );
-    return response.data;
-};
+const USE_MOCK = false;
+export const API_URL = "https://realworld.habsida.net/api";
 
 export const getArticleBySlug = async (slug) => {
-    const response = await axios.get(
-        `${API_URL}/articles/${slug}`
-    );
-    return response.data.article;
+    if (USE_MOCK) {
+    return MOCK_ARTICLES;
+  }
+
+  const response = await axios.get(
+    `${API_URL}/articles/${slug}`
+  );
+  return response.data.article;
 };
 
-export const singUp = async (username, email, password) => {
+export const signUp = async (username, email, password) => {
+  if (USE_MOCK) {
+    return {
+      username,
+      email,
+      token: "mock-token",
+    };
+  }
   const response = await axios.post(`${API_URL}/users`, {
     user: { username, email, password },
   });
-  return response.data.user;
+  return  response.data.user;
 };
 
-export const singIn = async (email, password) => {
+export const signIn = async (email, password) => {
+  if (USE_MOCK) {
+    return {
+      username: "mockUser",
+      email,
+      token: "mock-token",
+    };
+  }
   const response = await axios.post(`${API_URL}/users/login`, {
     user: { email, password },
   });
@@ -60,4 +70,35 @@ export const updateUser = async (userData) => {
   );
 
   return response.data.user;
+};
+const MOCK_ARTICLES = {
+  articles: [
+    {
+      slug: "mock-article",
+      title: "Mock Article",
+      description: "API temporarily unavailable",
+      body: "This is a mock article",
+      tagList: ["mock"],
+      createdAt: new Date().toISOString(),
+      favoritesCount: 0,
+      author: {
+        username: "mockUser",
+        image: null,
+      },
+    },
+  ],
+  articlesCount: 1,
+};
+
+export const getArticles = async (page = 1, limit = 4) => {
+  if (USE_MOCK) {
+    return MOCK_ARTICLES;
+  }
+
+  const offset = (page - 1) * limit;
+  const response = await axios.get(
+    `${API_URL}/articles?limit=${limit}&offset=${offset}`
+  );
+
+  return response.data;
 };

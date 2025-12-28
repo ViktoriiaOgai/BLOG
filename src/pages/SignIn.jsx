@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { singIn } from "../service/articlesService";
-import "./Sing.css";
+import { signIn } from "../service/articlesService";
+import "./Sign.css";
 import { useAuth } from "../context/AuthContext";
 
-export default function SingIn() {
+export default function SignIn() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const {
@@ -17,18 +17,12 @@ export default function SingIn() {
 
   const onSubmit = async (data) => {
   try {
-    const user = await singIn(
+    const user = await signIn(
       data.email,
       data.password
     );
-
-    console.log("Пользователь:", user);
-
      login(user);
-
-    // сохраняем пользователя (токен)
-    //localStorage.setItem("user", JSON.stringify(user));
-    navigate("/");
+     navigate("/");
 
   } catch (error) {
   const serverErrors = error.response?.data?.errors;
@@ -37,18 +31,23 @@ export default function SingIn() {
     Object.entries(serverErrors).forEach(([field, messages]) => {
       if (field === "email or password") {
         setError("root", {
-            type: "server",
-            message: messages.join(", "),
+          type: "server",
+          message: "Email or password is invalid",
         });
       } else {
         setError(field, {
-            type: "server",
-            message: messages.join(", "),
+          type: "server",
+          message: messages.join(", "),
         });
       }
     });
-}
+  }else {
+    setError("root", {
+      type: "server",
+      message: "Server is unavailable. Please try again later.",
+    });
   }
+}
 };
 
   return (
@@ -68,11 +67,11 @@ export default function SingIn() {
           })}
         />
        {errors.email && <p className="error">{errors.email.message}</p>}
-       {errors.root && <p className="error">{errors.root.message}</p>}
+       
         {/* Password */}
         <input
           type="password"
-          placeholder="Password is required"
+          placeholder="Password"
           {...register("password", {
             required: "Password is required",
               minLength: {
@@ -87,12 +86,12 @@ export default function SingIn() {
         />
         {errors.password && <p className="error">{errors.password.message}</p>}
         {errors.root && <p className="error">{errors.root.message}</p>}
-        
-    <button type="submit">Login</button>
+       
+           <button type="submit">Sign In</button>
       </form>
 
       <p>
-        No account? <Link to="/sing-up">Sing Up</Link>
+        No account? <Link to="/sign-up">Sign Up</Link>
       </p>
     </div>
   );

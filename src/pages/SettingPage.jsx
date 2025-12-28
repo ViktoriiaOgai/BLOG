@@ -2,11 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext.jsx";
 import { updateUser } from "../service/articlesService";
-import "./Sing.css";
+import "./Sign.css";
+import { useNavigate } from "react-router-dom";
 
 export default function SettingPage() {
   const { user, login, logout } = useAuth();
-
+const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,7 +17,7 @@ export default function SettingPage() {
     defaultValues: {
       username: user?.username || "",
       email: user?.email || "",
-      password: "",
+      text: "",
       avatar: user?.avatar || "",
     },
   });
@@ -29,7 +30,7 @@ const handleLogout = () => {
     const updatedUser = await updateUser({
       username: data.username,
       email: data.email,
-      password: data.password || undefined,
+      text: data.text || undefined,
       image: data.avatar,
     });
 
@@ -54,77 +55,57 @@ const handleLogout = () => {
   return (
     
     <div className="prof_change">
-          <h2>Your Settings</h2>
+      <h2>Your Settings</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
-          <label >Enter user name</label>
-          <input className="new_input"
-             {...register("username", {
-              required: "Username is required",
-              minLength: {
-              value: 3,
-              message: "Username must be at least 3 characters",
-            },
-            maxLength: {
-              value: 20,
-              message: "Username must be at most 20 characters",
-            },
-          })}
+          <input
+            className="new_input"
+            {...register("username", { required: "Username is required" })}
+            placeholder="Username"
           />
           {errors.username && <p className="error">{errors.username.message}</p>}
         </div>
 
         <div className="form-group">
-          <label>Email</label>
-          <input className="new_input"
-             {...register("email", {
-              required: "Email is required",
-              pattern: {
-              value: /^\S+@\S+$/,
-              message: "Invalid email address",
-            },
-          })}
+          <input
+            className="new_input"
+            {...register("email", { required: "Email is required" })}
+            placeholder="Email"
           />
           {errors.email && <p className="error">{errors.email.message}</p>}
         </div>
 
         <div className="form-group">
-          <label>New password</label> 
-          <input className="new_input"
-            type="password"
-           {...register("password", {
-              required: "Password is required",
-              minLength: {
-              value: 6,
-              message: "Password must be at least 6 characters",
-            },
-            maxLength: {
-              value: 40,
-              message: "Password must be at most 40 characters",
-            },
-          })}
+          <textarea
+            className="new_input"
+            placeholder="Введите свой комментарий"
+            {...register("text")}
           />
-          {errors.password && <p className="error">{errors.password.message}</p>}
         </div>
 
         <div className="form-group">
-          <label>Avatar URL</label>
-          <input className="new_input"
+          <input
+            className="new_input"
             {...register("avatar", {
               pattern: {
                 value: /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))$/i,
                 message: "Некорректный URL аватара",
               },
             })}
+            placeholder="Avatar URL"
           />
           {errors.avatar && <p className="error">{errors.avatar.message}</p>}
         </div>
 
-        <button className = "save_btn" type="submit">Update Settings</button>
-        <button className="logout_btn" onClick={handleLogout}>LogOut</button>
+        <div className="buttons-row">
+  <button className="logout_btn" type="button" onClick={handleLogout}>
+    <span className="out">Click here to log out</span>
+  </button>
+  <button className="save_btn" type="submit">
+    <span className="update">Update Settings</span>
+  </button>
+</div>
       </form>
-      
     </div>
-    
   );
 }

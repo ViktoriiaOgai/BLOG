@@ -4,7 +4,7 @@ import ArticleCard from "./components/ArticleCard.jsx";
 import Pagination from "./components/Pagination.jsx";
 import Loader from "./components/Loader.jsx";
 import BannerHome from "./components/banner/BannerHome.jsx";
-
+import "./MainPage.css";
 const LIMIT = 4;
 
 export default function MainPage() {
@@ -12,25 +12,27 @@ export default function MainPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
-
+  const [error, setError] = useState(null);
   useEffect(() => {
     loadArticles(currentPage);
   }, [currentPage]);
 
   const loadArticles = async (page) => {
-    try {
-      setLoading(true);
-      const data = await getArticles(page, LIMIT);
+  try {
+    setLoading(true);
+    setError(null);
 
-      setArticles(data.articles);
-      setTotalPages(Math.ceil(data.articlesCount / LIMIT));
-    } catch (error) {
-      console.error("Ошибка загрузки статей", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+    const data = await getArticles(page, LIMIT);
+    setArticles(data.articles);
+    setTotalPages(Math.ceil(data.articlesCount / LIMIT));
+  } catch (error) {
+    console.error("Ошибка загрузки статей", error);
+    setError("Articles are temporarily unavailable");
+    setArticles([]);
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <>
       <BannerHome
@@ -40,10 +42,26 @@ export default function MainPage() {
 
       {loading && <Loader />}
 
-      {!loading && articles.map(article => (
-        <ArticleCard key={article.slug} article={article} />
-      ))}
+      {!loading && error && <p className="error">{error}</p>}
+       <div className="container">
+        <div className="popular-tags">
+          <p className="popular-title">Popular tags</p>
+          <ul className="tag-list">
+            <li className="tag">one</li>
+            <li className="tag">something</li>
+            <li className="tag">chinese</li>
+            <li className="tag">english</li>
+            <li className="tag">french</li>
+          </ul>
+        </div>
 
+{!loading && !error && articles.map(article => (
+  <ArticleCard key={article.slug} article={article} />
+))}
+
+{!loading && !error && articles.length === 0 && (
+  <p>No articles yet</p>
+)}
       {!loading && totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
@@ -51,6 +69,7 @@ export default function MainPage() {
           onPageChange={setCurrentPage}
         />
       )}
+      </div>
     </>
   );
 }

@@ -17,6 +17,8 @@ box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.25) inset;
  
 .banner h1 {
   
+text-decoration-thickness: 0%;
+font-family: Titillium Web;
 font-weight: 700;
 font-style: Bold;
 font-size: 56px;
@@ -32,6 +34,7 @@ text-decoration-thickness: 0%;
 }
 
 .banner p {
+font-family: Source Sans Pro;
 font-weight: 400;
 font-style: Regular;
 font-size: 24px;
@@ -57,117 +60,128 @@ background: var(--black, rgba(51, 51, 51, 1));
 }
 
 .banner__avatar {
- width: 132;
-height: 132;
-min-width: 24px;
-min-height: 24px;
+ width: 132px;
+height: 132px;
 gap: 10px;
 opacity: 1;
-border-radius: 64px;
-
+border-radius: 50%; 
+ display: block;
+  margin: 0 auto; 
 }
 
-.banner__username {
-  margin-bottom: 0.5rem;
-  width: 122;
-height: 36;
+.banner--profile h2 {
+ font-family: Titillium Web;
+font-weight: 600;
+font-style: SemiBold;
+font-size: 32px;
+line-height: 36px;
+letter-spacing: 0%;
+vertical-align: middle;
+width: 122px;
+height: 36px;
 opacity: 1;
+color: var(--white, rgba(255, 255, 255, 1));
 
 }
 
 .banner__likes {
-  width: 120;
-height: 44;
-min-width: 120px;
+ width: 98px;
+height: 32px;
+display: flex;
+  align-items: center; 
 gap: 8px;
 opacity: 1;
-border-radius: radius;
+padding-top: 8px;
+padding-right: 16px;
+padding-bottom: 8px;
+padding-left: 16px;
+border-radius: 8px;
 border-width: 1px;
-padding-top: 10px;
-padding-right: 12px;
-padding-bottom: 10px;
-padding-left: 12px;
 border: 1px solid var(--green, rgba(97, 187, 97, 1));
 background: var(--black, rgba(51, 51, 51, 1));
-
+cursor: pointer;
 }
 .likes-count {
- color:rgba(97, 187, 97, 1)
-}
-
-
-.banner--article {
- width: 1280;
-height: 282;
-opacity: 1;
-padding-top: 48px;
-padding-right: 16px;
-padding-bottom: 48px;
-padding-left: 16px;
-background: var(--black, rgba(51, 51, 51, 1));
-
-
-}
- 
-.banner__content {
-  width: 800;
-height: 186;
-max-width: 800px;
-gap: 10px;
-opacity: 1;
-padding: 10px;
-position: relative;
-}
-.banner__author {
-  font-weight: 600;
-font-size: 16px;
+ color:rgba(97, 187, 97, 1);
+ font-family: Source Sans Pro;
+font-weight: 400;
+font-size: 18px;
 line-height: 100%;
 letter-spacing: 0%;
 text-align: center;
 vertical-align: middle;
-background: rgba(92, 184, 92, 1);
-flex-direction: column;
+gap: 16px;
+}
+ /* пост */
+
+.banner--article {
+padding: 48px 16px;
+opacity: 1;
+background: var(--black, rgba(51, 51, 51, 1));
 display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 282px;
+}
+ 
+.banner__content {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+}
+.banner__author {
+ display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .banner__avatar {
-  width: 24;
-height: 24;
+  width: 24px;
+height: 24px;
 min-width: 24px;
 min-height: 24px;
 gap: 10px;
 opacity: 1;
-border-radius: 64px;
-border-width: 1px;
-border: 1px solid var(--white, rgba(255, 255, 255, 1))
-
+border-radius: 50%;
+border: 1px solid var(--white, rgba(255, 255, 255, 1));
+object-fit: cover;
 }
 
 .banner__meta {
-width: 124;
-height: 36;
-gap: 10px;
-position: absolute;
-left: 20px;
-bottom: 20px;
-opacity: 1;
+
 display: flex;
 align-items: center;
-gap: 12px;
-
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .banner__username {
-  font-weight: 500;
+  font-family: Source Sans Pro;
+font-weight: 600;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+text-align: left;
+vertical-align: middle;
+color: rgba(92, 184, 92, 1);
+width: 90px;
+height: 20px;
+opacity: 1;
+
 }
 
 .banner__date {
- font-weight: 400;
+ font-family: Source Sans Pro;
+font-weight: 400;
+font-style: Regular;
 font-size: 12.8px;
 line-height: 100%;
 letter-spacing: 0%;
 vertical-align: middle;
-background: var(--grey, rgba(170, 170, 170, 1));
+color: var(--grey, rgba(170, 170, 170, 1));
+display: flex;
+  gap: 8px;
 
 }
 

@@ -1,27 +1,27 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { singUp } from "../service/articlesService";
+import { signUp } from "../service/articlesService.js";
 import { useAuth } from "../context/AuthContext.jsx";
 
-import "./Sing.css";
-export default function SingUp() {
+import "./Sign.css";
+export default function SignUp() {
   const navigate = useNavigate();
+  const { login } = useAuth();
+ 
   const {
   register,
   handleSubmit,
   setError,
+  watch,
   formState: { errors },
 } = useForm({ mode: "onBlur" });
-
-const { login } = useAuth();
   const onSubmit = async (data) => {
   try {
-    const user = await singUp(
+    const user = await signUp(
       data.username,
       data.email,
       data.password
     );
-
     console.log("Пользователь зарегистрирован:", user);
 
    login(user); 
@@ -32,18 +32,22 @@ const { login } = useAuth();
 
   if (serverErrors) {
     Object.entries(serverErrors).forEach(([field, messages]) => {
-      setError(field, {
+      setError(field === "email" || field === "username" ? field : "root", {
         type: "server",
         message: messages.join(", "),
       });
     });
+  } else {
+    setError("root", {
+      type: "server",
+      message: "Server is unavailable. Please try again later.",
+    });
   }
 }
-};
-
+  }
   return (
     <div className="auth-page">
-      <h1>Create new account</h1>
+      <h1>Sign Up</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Username */}
@@ -63,7 +67,7 @@ const { login } = useAuth();
           })}
         />
         {errors.username && <p className="error">{errors.username.message}</p>}
-
+        
         {/* Email */}
         <input
           type="email"
@@ -107,7 +111,9 @@ const { login } = useAuth();
           })}
         />
         {errors.repeatPassword && <p className="error">{errors.repeatPassword.message}</p>}
-
+       {errors.root && (
+         <p className="error">{errors.root.message}</p>
+           )}
         {/* Agreement */}
         <label>
           <input
@@ -120,12 +126,12 @@ const { login } = useAuth();
         </label>
         {errors.agree && <p className="error">{errors.agree.message}</p>}
 
-        <button type="submit">Create</button>
+        <button type="submit">Sign Up</button>
       </form>
 
       <p>
-        Already have an account? <Link to="/sing-in">Sing In</Link>
+        Already have an account? <Link to="/sign-in">Sign In</Link>
       </p>
     </div>
   );
-}
+  }

@@ -1,49 +1,73 @@
 .article-card {
-  border: 1px solid #e5e5e5;
-  padding: 16px;
-  margin-bottom: 16px;
-  border-radius: 4px;
+  border: 1px solid var(--grey, rgba(170, 170, 170, 1));
+  border-radius: 8px;
+  width: 100%;
   background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  margin-bottom: 20px;
+
 }
 
-/* верхняя строка */
-.article-meta {
+/* Верхняя строка: автор слева, кнопка лайк справа */
+.article-card-meta {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  width: 100%;
+    align-items: center;
+   
 }
 
-/* автор */
+/* Автор */
 .author {
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 10px;
+}
+
+.author > div {
+  display: flex;
+  flex-direction: column;
 }
 
 .author img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .name {
   color: #5cb85c;
-  font-weight: 500;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .date {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
   font-size: 12px;
-  color: #bbb;
+  color: var(--grey, rgba(170, 170, 170, 1));
 }
 
-/* лайк */
+/* Кнопка лайка */
 .like-btn {
-  border: 1px solid #5cb85c;
-  background: transparent;
-  color: #5cb85c;
-  padding: 4px 8px;
-  border-radius: 4px;
-  cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgb(97, 223, 124);
+  background-color: #fff;
+  cursor: pointer;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
 }
 
 .like-btn:disabled {
@@ -52,12 +76,33 @@
   border-color: rgb(97, 223, 124);
 }
 
-/* тело */
+.likeIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.count {
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--green, rgba(97, 187, 97, 1));
+}
+
+/* Контент */
+.cont {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 .preview-link {
   display: block;
   margin-top: 12px;
   text-decoration: none;
   color: inherit;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 36px;
 }
 
 .preview-link h2 {
@@ -68,10 +113,23 @@
   color: #999;
 }
 
- .tag-list li {
-  border: 1px solid #ddd;
+/* Теги */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tag-list li {
+  padding: 6px 12px;
   border-radius: 12px;
-  padding: 2px 8px;
-  font-size: 12px;
-  color: #aaa;
+  border: 1px solid var(--grey, rgba(170, 170, 170, 1));
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  font-size: 12.8px;
+  color: var(--grey, rgba(170, 170, 170, 1));
+  background: #fff;
 }

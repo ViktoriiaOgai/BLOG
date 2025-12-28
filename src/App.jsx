@@ -3,8 +3,8 @@ import Layout from "./layout/Layout.jsx";
 import MainPage from "./pages/MainPage.jsx";
 import ArticlePage from "./pages/ArticlePage.jsx";
 import './App.css'
-import SingUp from './pages/SingUp.jsx';
-import SingIn from './pages/SingIn.jsx';
+import SignUp from './pages/SignUp.jsx';
+import SignIn from './pages/SignIn.jsx';
 import ProfilePage from "./pages/ProfilePage.jsx";
 import EditArticlePage from  "./pages/EditArticlePage";
 import SettingPage from "./pages/SettingPage.jsx";
@@ -17,8 +17,8 @@ function App() {
               <Route index element={<MainPage/>}/>
               <Route path="/articles" element={<MainPage/>}/>
               <Route path="/articles/:slug" element={<ArticlePage/>}/>
-              <Route path="/sing-up" element={<SingUp />} />
-              <Route path="/sing-in" element={<SingIn />} />
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/sign-in" element={<SignIn />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="profile/:username" element={<ProfilePage />} />
               <Route path="settings" element={<SettingPage />} />

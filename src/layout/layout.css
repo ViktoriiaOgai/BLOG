@@ -3,16 +3,17 @@ display: flex;
 justify-content: space-between;
 align-items: center;       /* Выравниваем по центру по вертикали */
 padding: 15px 30px;  
-width: 1280;
-height: 60;
+width: 1280px;
+height: 60px;
 gap: 10px;
 opacity: 1;
 border-bottom-width: 1px;
 padding: 10px;
-
+font: Titillium Web;
 }
 
 .p1 {
+font-family: Titillium Web;
 font-weight: 700;
 font-style: Bold;
 font-size: 24px;
@@ -31,6 +32,14 @@ opacity: 1;
 .links {
   display: flex;             /* Чтобы ссылки тоже встали в ряд */
   gap: 20px;
+  font-family: Source Sans Pro;
+font-weight: 400;
+font-style: Regular;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+text-align: center;
+
 }
 
 .ulogo {
@@ -55,4 +64,29 @@ border-width: 1px;
   border-radius: 6px;
   color:rgba(97, 187, 97, 1);
 }
- 
+ .nav-links {
+  display: flex;
+  align-items: center; /* выравнивание по вертикали */
+  gap: 20px; /* расстояние между ссылками */
+  list-style: none; /* убираем маркеры */
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333; /* цвет текста */
+  font-weight: 500;
+  gap: 8px; /* расстояние между иконкой и текстом */
+}
+
+.nav-links a:hover {
+  color: var(--green, #61bb61); /* цвет при наведении */
+}
+
+.ulogo {
+  width: 20px; /* размер иконки */
+  height: 20px;
+}
