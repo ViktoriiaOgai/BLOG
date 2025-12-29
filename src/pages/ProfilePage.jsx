@@ -19,7 +19,7 @@ export default function ProfilePage() {
     getArticlesByAuthor(username)
       .then((data) => {
         // если API вернул undefined, подставляем пустой массив
-        setArticles(data?.articles || []);
+        setArticles(data.articles || []);
         setLoading(false);
       })
       .catch(() => {

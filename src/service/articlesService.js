@@ -103,24 +103,25 @@ export const getArticles = async (page = 1, limit = 4) => {
   return response.data;
 };
 export const createArticle = async (data, token) => {
-  const response = await axios.post(
-    "https://realworld.habsida.net/api/articles",
-    {
+  // data = { title, description, body, tagList }
+  const response = await fetch(`${API_URL}/articles`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+    },
+    body: JSON.stringify({
       article: {
         title: data.title,
         description: data.description,
         body: data.body,
+        tagList: data.tagList, // <- обязательно!
       },
-    },
-    {
-      headers: {
-        Authorization: `Token ${token}`,
-        "Content-Type": "application/json",
-      },
-    }
-  );
+    }),
+  });
 
-  return response.data.article;
+  const result = await response.json();
+  return result.article;
 };
 export const getArticlesByAuthor = async (username) => {
   const response = await fetch(`${API_URL}/articles?author=${username}`);

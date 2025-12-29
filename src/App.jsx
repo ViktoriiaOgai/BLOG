@@ -10,7 +10,6 @@ import EditArticlePage from  "./pages/EditArticlePage";
 import SettingPage from "./pages/SettingPage.jsx";
 import NewArticlePage from './pages/NewArticlePage.jsx';
 import { useAuth } from "./context/AuthContext";
-import { Navigate } from "react-router-dom";
 
 
 function App() {

@@ -39,10 +39,10 @@ const formatDate = (date) =>
 
       {/* Теги */}
       <ul className="tag-list">
-        {article.tagList.map((tag) => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
+  {article.tagList?.map(tag => (
+    <li key={tag} className="tag">{tag}</li>
+  ))}
+</ul>
       </div>
     </div>
   );

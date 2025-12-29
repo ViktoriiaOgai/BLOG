@@ -68,7 +68,7 @@ const handleEdit = () => {
   if (loading) return <Loader />;
   if (error) return <p>{error}</p>;
   if (!article) return null;
-
+console.log(article.tagList);
   return (
     <>
       {/* 🔹 Баннер статьи */}
@@ -82,10 +82,10 @@ const handleEdit = () => {
       <div className="article-page">
          <ReactMarkdown>{article.body}</ReactMarkdown>
          <ul className="tag-list">
-        {article.tagList?.map(tag => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
+  {article.tagList?.map(tag => (
+    <li key={tag} className="tag">{tag}</li>
+  ))}
+</ul>
       <div className="article-meta">
     <div className="author-info">
       <img
