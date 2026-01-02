@@ -6,13 +6,14 @@
 
 .article-meta {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 12px;
   margin-top: 16px;
   border-top: 1px solid #ddd;
   padding-top: 12px;
   text-align: center;
+   justify-content: center;
 }
 
 .author-info {
@@ -27,7 +28,11 @@
   height: 60px;
   border-radius: 50%;
 }
-
+.author-info, .favorite-btn {
+   display: flex;
+  flex-direction: row;
+  }
+  
 .author-name {
   font-family: Source Sans Pro;
 font-weight: 600;

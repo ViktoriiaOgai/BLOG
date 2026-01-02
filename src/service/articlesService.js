@@ -41,36 +41,44 @@ export const signIn = async (email, password) => {
   return response.data.user;
 };
 
-export const updateArticle = async (slug, articleData) => {
+export const updateArticle = async (slug, data, token) => {
   const response = await axios.put(
     `${API_URL}/articles/${slug}`,
     {
-      article: articleData
+      article: {
+        title: data.title,
+        description: data.description,
+        body: data.body,
+      },
     },
     {
       headers: {
-        Authorization: `Token ${localStorage.getItem("token")}`,
+        Authorization: `Token ${token}`,
       },
     }
   );
 
   return response.data.article;
 };
+
 export const updateUser = async (userData) => {
+  const token = localStorage.getItem("token"); 
+
   const response = await axios.put(
     `${API_URL}/user`,
-    {
-      user: userData,
-    },
+    
+     userData,
+  
     {
       headers: {
-        Authorization: `Token ${localStorage.getItem("token")}`,
+        Authorization: `Token ${token}`,
       },
     }
   );
 
   return response.data.user;
 };
+
 const MOCK_ARTICLES = {
   articles: [
     {
@@ -127,4 +135,28 @@ export const getArticlesByAuthor = async (username) => {
   const response = await fetch(`${API_URL}/articles?author=${username}`);
   const data = await response.json();
   return data; // { articles: [...] }
+};
+export const favoriteArticle = async (slug, token) => {
+  const response = await axios.post(
+    `${API_URL}/articles/${slug}/favorite`,
+    {},
+    {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    }
+  );
+  return response.data.article;
+};
+
+export const unfavoriteArticle = async (slug, token) => {
+  const response = await axios.delete(
+    `${API_URL}/articles/${slug}/favorite`,
+    {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    }
+  );
+  return response.data.article;
 };

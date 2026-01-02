@@ -1,6 +1,6 @@
 .banner {
-width: 1280px;
-height: 150px;
+width: 100%;
+min-height: 200px;
 padding-top: 48px;
 padding-bottom: 48px;
 background: var(--green, rgba(97, 187, 97, 1));
@@ -47,8 +47,8 @@ vertical-align: middle;
   
   /* профиль */
 .banner--profile {
-width: 1280;
-height: 348;
+width: 100%;
+min-height: 200px;
 opacity: 1;
 padding-top: 48px;
 padding-right: 16px;
@@ -67,6 +67,7 @@ opacity: 1;
 border-radius: 50%; 
  display: block;
   margin: 0 auto; 
+  
 }
 
 .banner--profile h2 {
@@ -123,9 +124,11 @@ display: flex;
   width: 100%;
   min-height: 282px;
   display: flex;
+  aspect-ratio: 16 / 4;
 }
  
 .banner__content {
+  width: 100%;
   max-width: 800px;
   display: flex;
   flex-direction: column;

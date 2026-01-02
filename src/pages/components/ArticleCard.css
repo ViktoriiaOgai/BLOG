@@ -75,6 +75,11 @@
   color: rgb(97, 223, 124);
   border-color: rgb(97, 223, 124);
 }
+.like-btn:hover {
+  opacity: 1;
+  color: rgb(97, 223, 124);
+  border-color: rgb(97, 223, 124);
+}
 
 .likeIcon {
   width: 20px;

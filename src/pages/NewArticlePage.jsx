@@ -9,15 +9,10 @@ export default function NewArticlePage() {
   const navigate = useNavigate();
    const { user } = useAuth();
   const handleSubmit = async (data) => {
-    
-    const article = await createArticle(data, user.token);
-    navigate(`/articles/${article.slug}`);
-  };
- if (!user) {
-    // Можно показать сообщение или редирект здесь
-    navigate("/sign-in"); 
-    return null;
-  }
+  const article = await createArticle(data, user.token);
+  navigate(`/articles/${article.slug}`);
+};
+
   return (
     <>
       <div className="article-editor">

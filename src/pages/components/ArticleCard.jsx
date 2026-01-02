@@ -2,14 +2,32 @@ import { Link } from "react-router-dom";
 import "../components/ArticleCard.css";
 import favoriteIcon from"../../assets/favorite.svg"
 import likeIcon from"../../assets/like.svg"
+import { useAuth } from "../../context/AuthContext";
+import {favoriteArticle, unfavoriteArticle,} from "../../service/articlesService";
+import { useState } from "react";
 
-export default function ArticleCard ({article}) {
+export default function ArticleCard ({article,  onLike}) {
 const formatDate = (date) =>
     new Date(date).toLocaleDateString("en-GB", {
       day: "numeric",
       month: "long",
       year: "numeric",
     });
+    const { user } = useAuth();
+     const [favorited, setFavorited] = useState(article.favorited);
+  const [favoritesCount, setFavoritesCount] = useState(
+    article.favoritesCount
+  );
+const handleClick = async () => {
+  if (!user) return;
+
+  const updatedArticle = article.favorited
+    ? await unfavoriteArticle(article.slug, user.token)
+    : await favoriteArticle(article.slug, user.token);
+
+  onLike(updatedArticle);
+};
+
 
    return (
     <div className="article-card">
@@ -25,8 +43,11 @@ const formatDate = (date) =>
             <span className="date">{formatDate(article.createdAt)}</span>
           </div>
         </div>
-        <button className="like-btn" disabled>
-          <img className="likeIcon" src={likeIcon} alt="like" />
+        <button
+            className={`like-btn ${favorited ? "liked" : ""}`}
+            onClick={handleClick}
+            disabled={!user}
+>          <img className="likeIcon" src={likeIcon} alt="like" />
           <span className="count">{article.favoritesCount}</span>
         </button>
       </div>

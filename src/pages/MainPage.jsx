@@ -33,6 +33,14 @@ export default function MainPage() {
     setLoading(false);
   }
 };
+const updateArticle = (updatedArticle) => {
+  setArticles((prev) =>
+    prev.map((article) =>
+      article.slug === updatedArticle.slug ? updatedArticle : article
+    )
+  );
+};
+
   return (
     <>
       <BannerHome
@@ -56,7 +64,7 @@ export default function MainPage() {
         </div>
 
 {!loading && !error && articles.map(article => (
-  <ArticleCard key={article.slug} article={article} />
+  <ArticleCard key={article.slug} article={article} onLike={updateArticle}/>
 ))}
 
 {!loading && !error && articles.length === 0 && (

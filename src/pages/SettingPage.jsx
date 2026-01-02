@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext.jsx";
 import { updateUser } from "../service/articlesService";
@@ -13,28 +13,39 @@ const navigate = useNavigate();
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm({
-    defaultValues: {
+    reset,
+  } = useForm();
+  useEffect(() => {
+  if (user) {
+    reset({
       username: user?.username || "",
       email: user?.email || "",
-      text: "",
-      avatar: user?.avatar || "",
-    },
-  });
+      text: user?.bio || "",
+      avatar: user?.image || "",
+    });
+  }
+}, [user, reset]);
 const handleLogout = () => {
     logout();          // сброс user
     navigate("/");     // перенаправление на главную
   };
   const onSubmit = async (data) => {
   try {
-    const updatedUser = await updateUser({
-      username: data.username,
-      email: data.email,
-      text: data.text || undefined,
-      image: data.avatar,
-    });
+    const userPayload = {
+      username: data.username.trim(),
+      email: data.email.trim(),
+    };
 
-    login(updatedUser); // обновляем AuthContext
+    if (data.text?.trim()) {
+      userPayload.bio = data.text.trim();
+    }
+
+    if (data.avatar?.trim()) {
+      userPayload.image = data.avatar.trim();
+    }
+console.log (userPayload);
+    const updatedUser = await updateUser(userPayload);
+    login(updatedUser);
     alert("Профиль обновлён!");
   } catch (error) {
     console.error(error);
@@ -51,6 +62,7 @@ const handleLogout = () => {
     }
   }
 };
+
 
   return (
     
@@ -86,14 +98,10 @@ const handleLogout = () => {
         <div className="form-group">
           <input
             className="new_input"
-            {...register("avatar", {
-              pattern: {
-                value: /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))$/i,
-                message: "Некорректный URL аватара",
-              },
-            })}
+            {...register("avatar")}
             placeholder="Avatar URL"
-          />
+            />
+
           {errors.avatar && <p className="error">{errors.avatar.message}</p>}
         </div>
 

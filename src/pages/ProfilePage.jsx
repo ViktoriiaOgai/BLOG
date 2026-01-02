@@ -35,12 +35,9 @@ export default function ProfilePage() {
     <>
       <BannerProfile user={user} />
 
-      <div className="profile-header">
-        <h2>{username || user.username}</h2>
-      </div>
-
+     
       <div className="profile-page">
-        {articles.length === 0 && <p>No articles yet</p>}
+        {articles.length === 0 && <p></p>}
 
         {articles.map((article) => (
           <ArticleCard key={article.slug} article={article} />
