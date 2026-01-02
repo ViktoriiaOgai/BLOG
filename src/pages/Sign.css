@@ -1,0 +1,219 @@
+/* Форма регистрации */
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+.auth-page h1 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 46px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.auth-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 20px;
+  width: 480px;
+}
+
+.auth-page input {
+  width: 480px;
+  height: 48px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid var(--grey, rgba(170, 170, 170, 1));
+  background: #fff;
+   font-family: "Titillium Web", sans-serif;
+}
+
+.auth-page button {
+  width: 120px;
+  height: 43px;
+  min-width: 120px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--green, rgba(97, 187, 97, 1));
+  background: var(--green, rgba(97, 187, 97, 1));
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: flex-end;
+}
+
+.auth-page button:hover {
+  background-color: #4cae4c;
+}
+/* Стили для чекбокса */
+.auth-page input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin-right: 8px; /* немного отступа от текста */
+}
+/* Стили ошибок */
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/*==============================*/
+/* Форма входа */
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+.login-page h1 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 46px;
+  line-height: 40px;
+  text-align: center;
+}
+.login-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 20px;
+  width: 480px;
+}
+
+.login-page input {
+  width: 480px;
+  height: 48px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid var(--grey, rgba(170, 170, 170, 1));
+  background: #fff;
+   font-family: "Titillium Web", sans-serif;
+}
+
+.login-page button {
+  width: 120px;
+  height: 43px;
+  min-width: 120px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--green, rgba(97, 187, 97, 1));
+  background: var(--green, rgba(97, 187, 97, 1));
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: flex-end;
+}
+
+.auth-page button:hover {
+  background-color: #4cae4c;
+}
+
+/*==============================*/
+/* Форма редактирования профиля */
+.prof_change {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;  /* поправила с 1160px на 400px, чтобы форма была аккуратной */
+  padding: 20px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8px;
+}
+
+.prof_change h2 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  color: var(--black, rgba(51, 51, 51, 1));
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+   gap: 16px; /* увеличено расстояние между инпутом и подписью ошибки */
+  margin-bottom: 20px;
+}
+
+.new_input {
+  width: 100%;
+  min-height: 48px; /* для textarea минимальная высота */
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid var(--grey, rgba(170, 170, 170, 1));
+  background: rgba(255, 255, 255, 1);
+  font-family: "Titillium Web", sans-serif;
+  font-size: 16px;
+  resize: vertical; /* textarea можно менять по высоте */
+}
+
+textarea.new_input {
+  min-height: 100px; /* достаточно места для комментария */
+}
+
+.save_btn {
+ width: 140px;
+  height: 43px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--green, rgba(97, 187, 97, 1));
+  background: var(--green, rgba(97, 187, 97, 1));
+  color: #fff;
+  cursor: pointer;
+  
+
+}
+
+.prof_change .logout_btn{
+  width: 160px;
+  height: 32px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--warning, rgba(187, 97, 97, 1));
+  background: var(--white, rgb(244, 247, 244));
+  color: var(--warning, rgba(187, 97, 97, 1));
+  cursor: pointer;
+}
+
+
+.update {
+  font-family: Source Sans Pro;
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+text-align: center;
+vertical-align: middle;
+color: var(--white, rgba(255, 255, 255, 1));
+
+}
+.prof_change.out {
+  font-family: Source Sans Pro;
+font-weight: 400;
+font-size: 12.8px;
+line-height: 100%;
+letter-spacing: 0%;
+vertical-align: middle;
+color: var(--warning, rgba(187, 97, 97, 1));
+
+}.buttons-row {
+  display: flex;
+  justify-content: space-between; /* Logout слева, Update справа */
+  width: 100%;
+  margin-top: 10px;
+}
