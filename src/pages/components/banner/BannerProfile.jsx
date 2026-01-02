@@ -1,4 +1,4 @@
-import "./banner.css";
+import "./Banner.css";
 import defaultAvatar from "../../../assets/avatar.png"; 
 import like from "../../../assets/like.svg";
 export default function BannerProfile({ user }) {
