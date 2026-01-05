@@ -1,1 +1,1 @@
-https://blog-appl-ducu5t3yv-viktoriias-projects-fc4ddb3c.vercel.app
+https://blog-appl-n572mhwpx-viktoriias-projects-fc4ddb3c.vercel.app
