@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: Titillium Web, sans-serif;
 }
 
 .logo {
@@ -10,6 +11,7 @@
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+  
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
@@ -33,11 +35,165 @@
   }
 }
 
-/* .card {
-  padding: 2em;
-} */
-
 .read-the-docs {
   color: #888;
+}
+
+.popular-title {
+    font-family: Titillium Web, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    align-self: flex-start;
+    color: var(--black, rgba(51, 51, 51, 1));
+}
+.tag {
+    
+    font-family: Source Sans Pro, sans-serif;
+    font-weight: 600;
+    font-size: 12.8px;
+    color: var(--grey, rgba(170, 170, 170, 1));
+   
+}
+.top-nav {
+
+font-family: Titillium Web;
+}
+
+.p1 {
+font-family: Titillium Web;
+font-weight: 700;
+font-style: Bold;
+font-size: 24px;
+letter-spacing: 0%;
+text-align: center;
+vertical-align: middle;
+color:  rgba(97, 187, 97, 1);
+opacity: 1;
+}
+
+.links {
+  font-family: Source Sans Pro;
+font-weight: 400;
+font-style: Regular;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+
+}
+.author-name {
+  font-family: Source Sans Pro;
+font-weight: 600;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+color: rgba(92, 184, 92, 1);
+opacity: 1;
+
+}
+
+.author-date {
+  font-family: Source Sans Pro;
+font-weight: 400;
+font-style: Regular;
+font-size: 12.8px;
+line-height: 100%;
+letter-spacing: 0%;
+vertical-align: middle;
+color: var(--grey, rgba(170, 170, 170, 1));
+}
+
+.favorite-btn,
+.article-actions button {
+  
+  background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+ font-family: Source Sans Pro;
+font-weight: 400;
+font-style: Regular;
+font-size: 12.8px;
+line-height: 100%;
+letter-spacing: 0%;
+
+}
+.tag-list li {
+   font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  font-size: 12.8px;
+  
+}
+
+.auth-page h1 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 46px;
+  line-height: 40px;
+  
+}
+
+.auth-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 20px;
+  width: 480px;
+}
+
+.auth-page input {
+    font-family: "Titillium Web", sans-serif;
+}
+
+
+.login-page h1 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 46px;
+  line-height: 40px;
+ 
+}
+
+.login-page input {
+     font-family: "Titillium Web", sans-serif;
+}
+
+/*==============================*/
+/* Форма редактирования профиля */
+
+.prof_change h2 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+    color: var(--black, rgba(51, 51, 51, 1));
+}
+
+.new_input {
+  
+  font-family: "Titillium Web", sans-serif;
+  font-size: 16px;
+  }
+
+.update {
+  font-family: Source Sans Pro;
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+
+
+}
+.prof_change.out {
+  font-family: Source Sans Pro;
+font-weight: 400;
+font-size: 12.8px;
+line-height: 100%;
+letter-spacing: 0%;
+vertical-align: middle;
+
 }
 

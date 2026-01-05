@@ -11,6 +11,7 @@ export default function SignIn() {
   register,
   handleSubmit,
   setError,
+  clearErrors,
   formState: { errors },
 } = useForm({ mode: "onBlur" });
 
@@ -25,7 +26,10 @@ export default function SignIn() {
      navigate("/");
 
   } catch (error) {
-  const serverErrors = error.response?.data?.errors;
+  setError("root", {
+    type: "server",
+    message: "Email or password is invalid",
+  });
 
   if (serverErrors) {
     Object.entries(serverErrors).forEach(([field, messages]) => {
@@ -59,13 +63,14 @@ export default function SignIn() {
           type="email"
           placeholder="Email"
           {...register("email", {
-            required: "Email is required",
-              pattern: {
-              value: /^\S+@\S+$/,
-              message: "Invalid email address",
-            },
-          })}
-        />
+    required: "Email is required",
+    pattern: {
+      value: /^\S+@\S+$/,
+      message: "Invalid email address",
+    },
+    onChange: () => clearErrors("root"),
+  })}
+/>
        {errors.email && <p className="error">{errors.email.message}</p>}
        
         {/* Password */}
@@ -73,17 +78,18 @@ export default function SignIn() {
           type="password"
           placeholder="Password"
           {...register("password", {
-            required: "Password is required",
-              minLength: {
-              value: 6,
-              message: "Password must be at least 6 characters",
-            },
-            maxLength: {
-              value: 40,
-              message: "Password must be at most 40 characters",
-            },
-          })}
-        />
+    required: "Password is required",
+    minLength: {
+      value: 6,
+      message: "Password must be at least 6 characters",
+    },
+    maxLength: {
+      value: 40,
+      message: "Password must be at most 40 characters",
+    },
+    onChange: () => clearErrors("root"),
+  })}
+/>
         {errors.password && <p className="error">{errors.password.message}</p>}
         {errors.root && <p className="error">{errors.root.message}</p>}
        

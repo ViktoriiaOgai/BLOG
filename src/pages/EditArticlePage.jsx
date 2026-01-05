@@ -31,8 +31,9 @@ export default function EditArticlePage() {
   const handleSubmit = async (data) => {
   try {
     setLoading(true);
-    await updateArticle(slug, data, user.token); 
-    navigate(`/articles/${slug}`);
+    const updatedArticle = await updateArticle(slug, data, user.token);
+    // берём новый slug из ответа
+    navigate(`/articles/${updatedArticle.slug}`);
   } finally {
     setLoading(false);
   }

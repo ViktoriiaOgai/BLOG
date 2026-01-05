@@ -10,36 +10,20 @@ gap: 10px;
 opacity: 1;
 border-bottom-width: 1px;
 padding: 10px;
-font: Titillium Web;
 }
 
 .p1 {
-font-family: Titillium Web;
-font-weight: 700;
-font-style: Bold;
-font-size: 24px;
 background: rgba(255, 255, 255, 1);
-letter-spacing: 0%;
-text-align: center;
-vertical-align: middle;
-width: 222;
-height: 34;
+width: 222px;
+height: 34px;
 padding-right: 64px;
 gap: 10px;
-color:  rgba(97, 187, 97, 1);
-opacity: 1;
 }
 
 .links {
   display: flex;             /* Чтобы ссылки тоже встали в ряд */
   gap: 20px;
-  font-family: Source Sans Pro;
-font-weight: 400;
-font-style: Regular;
-font-size: 16px;
-line-height: 100%;
-letter-spacing: 0%;
-text-align: center;
+  text-align: center;
 
 }
 

@@ -44,13 +44,7 @@ export const signIn = async (email, password) => {
 export const updateArticle = async (slug, data, token) => {
   const response = await axios.put(
     `${API_URL}/articles/${slug}`,
-    {
-      article: {
-        title: data.title,
-        description: data.description,
-        body: data.body,
-      },
-    },
+    { article: data },
     {
       headers: {
         Authorization: `Token ${token}`,
