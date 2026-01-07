@@ -5,7 +5,9 @@
   text-align: center;
   font-family: Titillium Web, sans-serif;
 }
-
+html, body {
+  font-family: "Titillium Web", Arial, sans-serif;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -196,4 +198,21 @@ letter-spacing: 0%;
 vertical-align: middle;
 
 }
+.banner h1 {
+  
+text-decoration-thickness: 0%;
+font-family: Titillium Web;
+font-weight: 700;
+font-style: Bold;
+font-size: 56px;
+line-height: 64px;
+letter-spacing: 0%;
+}
 
+.banner p {
+font-family: Source Sans Pro;
+font-weight: 400;
+font-style: Regular;
+font-size: 24px;
+
+  }
